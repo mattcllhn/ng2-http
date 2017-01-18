@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Http} from '@angular/http';
-import {User} from './models/user';
+import {User} from './shared/models/user';
+import {UserService} from "./shared/services/user.service";
+
 @Component({
   selector: 'my-app',
   styles: [`
@@ -14,7 +16,7 @@ import {User} from './models/user';
     <div *ngIf = "users">
       <div *ngFor = "let user of users" >
         <h2>{{user.first_name}} {{user.last_name}}</h2>
-        
+
       </div>
     </div>
   `
@@ -23,15 +25,12 @@ export class AppComponent implements OnInit{
   users: User[];
 
   message = 'This is the sample message.';
-  constructor(private http:Http){
+  constructor(private service : UserService){
 
   }//constructor
   ngOnInit(){
     //get users
-    this.http.get('https://reqres.in/api/users?page=2')
-    .subscribe(data => {
-      console.log(data.json());
-      this.users = data.json().data;
-    })
+    this.service.getUsers()
+    .subscribe(usersBack => this.users = usersBack);
   }//ngoninit
 }

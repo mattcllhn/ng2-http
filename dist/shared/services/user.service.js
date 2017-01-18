@@ -19,10 +19,25 @@ var UserService = (function () {
     UserService.prototype.getUsers = function () {
         return this.http.get(this.usersUrl)
             .map(function (res) { return res.json().data; })
-            .catch(function (err) {
-            return Observable_1.Observable.throw(err.json().data || 'Internal Server Erroooo');
-        });
-    }; //ngoninit
+            .catch(this.handleError);
+    }; //getUsers
+    UserService.prototype.getUser = function () {
+        return this.http.get('http://example.com')
+            .map(function (res) { return res.json().data; })
+            .catch(this.handleError);
+    }; //getuser
+    UserService.prototype.handleError = function (err) {
+        var errMessage;
+        if (err instanceof http_1.Response) {
+            var body = err.json() || '';
+            var error = body.error || JSON.stringify(body);
+            errMessage = err.status + " - " + err.statusText + " ||'' " + error;
+        }
+        else {
+            errMessage = err.message ? err.message : err.toString();
+        }
+        return Observable_1.Observable.throw(errMessage);
+    };
     return UserService;
 }());
 UserService = __decorate([

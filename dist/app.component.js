@@ -19,7 +19,7 @@ var AppComponent = (function () {
         var _this = this;
         //get users
         this.service.getUsers()
-            .subscribe(function (usersBack) { return _this.users = usersBack; });
+            .subscribe(function (usersBack) { return _this.users = usersBack; }, function (err) { console.log(err); });
     }; //ngoninit
     return AppComponent;
 }());

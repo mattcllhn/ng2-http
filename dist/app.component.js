@@ -27,7 +27,7 @@ AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
         styles: ["\n\n  "],
-        template: "\n    <div class=\"jumbotron text-center\">\n      <h1>The App Lives!</h1>\n      <p>{{ message }}</p>\n    </div>\n    <div *ngIf = \"users\">\n      <div *ngFor = \"let user of users\" >\n        <h2>{{user.first_name}} {{user.last_name}}</h2>\n\n      </div>\n    </div>\n  "
+        template: "\n  <my-users></my-users>\n    <div class=\"jumbotron text-center\">\n      <h1>The App Lives!</h1>\n      <p>{{ message }}</p>\n    </div>\n    <div *ngIf = \"users\">\n      <div *ngFor = \"let user of users\" >\n        <h2>{{user.first_name}} {{user.last_name}}</h2>\n\n      </div>\n    </div>\n  "
     }),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], AppComponent);
